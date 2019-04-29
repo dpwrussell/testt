@@ -27,5 +27,3 @@ function get_metadata() {
 
 get_metadata
 echo "Using Cloud Provider: ${CLOUD_PROVIDER}, Region: ${REGION}"
-echo ""
-curl http://metadata.google.internal/computeMetadata/v1/instance/zone -H "Metadata-Flavor: Google"
