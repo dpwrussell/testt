@@ -14,9 +14,10 @@ function get_metadata() {
   fi
 
   # GCP
-  METADATA=$(curl --fail http://169.254.169.254/computeMetadata/v1/instance/zone)
+  METADATA=$(curl --fail http://169.254.169.254/computeMetadata/v1/instance/zone -H "Metadata-Flavor: Google")
   if [ "${?}" == '0' ]; then
     CLOUD_PROVIDER="GCP"
+    METADATA="${METADATA##*/}"
     REGION="${METADATA%-*}"
     return 0
   fi
@@ -27,4 +28,4 @@ function get_metadata() {
 get_metadata
 echo "Using Cloud Provider: ${CLOUD_PROVIDER}, Region: ${REGION}"
 echo ""
-curl http://metadata.google.internal/computeMetadata/v1/instance/id
+curl http://metadata.google.internal/computeMetadata/v1/instance/zone -H "Metadata-Flavor: Google"
