@@ -6,8 +6,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: InstallTools
-        command: apt-get install -y curl
+          name: InstallTools
+          command: apt-get install -y curl
       - run:
           name: DetectCloud
           command: bash run.sh
