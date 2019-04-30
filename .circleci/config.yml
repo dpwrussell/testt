@@ -12,5 +12,8 @@ jobs:
           name: Dig
           command: dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}'
       - run:
-          name: DetectCloud
-          command: bash run.sh
+          name: Env
+          command: env
+      # - run:
+      #     name: DetectCloud
+      #     command: bash run.sh
