@@ -7,7 +7,10 @@ jobs:
       - checkout
       - run:
           name: InstallTools
-          command: apt-get update -y && apt-get install -y curl
+          command: apt-get update -y && apt-get install -y curl dnsutils
+      - run:
+          name: Dig
+          command: dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}'
       - run:
           name: DetectCloud
           command: bash run.sh
