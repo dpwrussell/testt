@@ -98,12 +98,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-# Look for the IP address of this node in AWS IP ranges
-print(find_gcp_region_from_instance_metadata())
-print()
