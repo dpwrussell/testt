@@ -1,19 +1,35 @@
 version: 2
 jobs:
+
   build:
     docker:
-      - image: debian:stretch
+      - image: circleci/python:3.7 # every job must define an image for the docker executor and subsequent jobs may define a different image.
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
     steps:
-      - checkout
+      - checkout  # checkout source code to working directory
       - run:
-          name: InstallTools
-          command: apt-get update -y && apt-get install -y curl dnsutils
+          command: |  # use pipenv to install dependencies
+            sudo pip install pipenv
+            pipenv install
       - run:
-          name: Dig
-          command: dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}'
-      - run:
-          name: Env
-          command: env
-      # - run:
-      #     name: DetectCloud
-      #     command: bash run.sh
+          command: |
+            pipenv run python aws-locate.py
+  #
+  # build:
+  #   docker:
+  #     - image: debian:stretch
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: InstallTools
+  #         command: apt-get update -y && apt-get install -y curl dnsutils
+  #     - run:
+  #         name: Dig
+  #         command: dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}'
+  #     - run:
+  #         name: Env
+  #         command: env
+  #     # - run:
+  #     #     name: DetectCloud
+  #     #     command: bash run.sh
