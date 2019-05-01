@@ -76,8 +76,34 @@ def find_gcp_region_from_instance_metadata() -> Optional[str]:
     return None
 
 
+def main():
+
+    # AWS
+    region = find_aws_region_from_ip()
+    if region is not None:
+        print(f'Cloud: AWS, Region: {region}')
+        return
+
+    # GCP
+    region = find_gcp_region_from_instance_metadata()
+    if region is not None:
+        print(f'Cloud: GCP, Region: {region}')
+        return
+
+    # Azure
+
+    # Unknown
+    print('Cloud: unknown, Region: unknown')
+
+
+if __name__ == '__main__':
+    main()
+
+
+
+
 
 
 # Look for the IP address of this node in AWS IP ranges
 print(find_gcp_region_from_instance_metadata())
-print(find_aws_region_from_ip())
+print()
