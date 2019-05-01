@@ -6,4 +6,4 @@ sudo: true
 install:
   - 'pip install pipenv'
   - 'pipenv install'
-script: 'python aws-locate.yml'
+script: 'python aws-locate.py'
