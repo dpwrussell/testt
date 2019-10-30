@@ -9,6 +9,11 @@ trigger:
 pool:
   vmImage: 'ubuntu-18.04'
 steps:
+  - bash: ls
+  - bash: env
+  - bash: pwd
   - bash: pip install pipenv
+  - bash: ls /usr/local/bin
+  - bash: which pipenv
   - bash: pipenv install
-  - script: python aws-locate.py
+  - bash: python aws-locate.py
