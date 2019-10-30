@@ -14,6 +14,7 @@ steps:
   - bash: pwd
   - bash: pip install pipenv
   - bash: ls /usr/local/bin
+  - bash: pip list
   - bash: which pipenv
   - bash: pipenv install
   - bash: python aws-locate.py
