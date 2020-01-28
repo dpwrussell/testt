@@ -12,6 +12,7 @@ jobs:
           command: |  # use pipenv to install dependencies
             sudo pip install pipenv
             pipenv install
+            sleep 60
       - run:
           command: |
             pipenv run python aws-locate.py
