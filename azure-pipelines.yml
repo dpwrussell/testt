@@ -14,3 +14,5 @@ steps:
   - script: python -m pip install pipenv
   - script: python -m pipenv lock -r > requirements.txt
   - script: pip install -r requirements.txt
+  - script: env
+  - script: sleep 60
